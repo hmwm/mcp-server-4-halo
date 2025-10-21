@@ -1,0 +1,11 @@
+# Halo Blog 配置
+halo:
+  blog:
+    base-url: https://yaemiko.live
+    pat: ${HALO_PAT:your-pat-token-here}
+
+# 日志配置
+logging:
+  level:
+    com.akina.mcp.server.halo: DEBUG
+    retrofit2: DEBUG
