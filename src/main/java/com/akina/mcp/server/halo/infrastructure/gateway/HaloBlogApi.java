@@ -1,0 +1,35 @@
+package com.akina.mcp.server.halo.infrastructure.gateway;
+
+import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostRequest;
+import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostResponse;
+import com.akina.mcp.server.halo.infrastructure.gateway.dto.PublishPostResponse;
+import retrofit2.Call;
+import retrofit2.http.*;
+
+/**
+ * Halo Blog API 接口
+ * 使用 Retrofit2 封装 Halo 博客 API 调用
+ */
+public interface HaloBlogApi {
+    
+    /**
+     * 创建文章
+     * @param request 创建文章请求
+     * @return 创建文章响应
+     */
+    @POST("apis/api.console.halo.run/v1alpha1/posts")
+    @Headers("Content-Type: application/json")
+    Call<CreatePostResponse> createPost(@Body CreatePostRequest request);
+    
+    /**
+     * 发布文章
+     * @param postName 文章名称
+     * @param async 是否异步发布
+     * @return 发布文章响应
+     */
+    @PUT("apis/api.console.halo.run/v1alpha1/posts/{postName}/publish")
+    Call<PublishPostResponse> publishPost(
+            @Path("postName") String postName,
+            @Query("async") boolean async
+    );
+}
