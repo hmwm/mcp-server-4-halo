@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.List;
@@ -29,11 +30,9 @@ public class CreatePostResponseDTO {
         private Map<String, String> labels;
         private Map<String, String> annotations;
         private Integer version;
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
-        private OffsetDateTime creationTimestamp;
 
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
-        private OffsetDateTime deletionTimestamp;
+        private Instant creationTimestamp;
+        private Instant deletionTimestamp;
 
         private List<String> finalizers;
     }
@@ -52,8 +51,7 @@ public class CreatePostResponseDTO {
         private Boolean deleted;
         private Boolean publish;
 
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
-        private OffsetDateTime publishTime;
+        private Instant publishTime;
 
         private Boolean pinned;
         private Boolean allowComment;
@@ -83,8 +81,7 @@ public class CreatePostResponseDTO {
         private List<String> contributors;
         private Boolean hideFromList;
 
-        @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ssXXX")
-        private OffsetDateTime lastModifyTime;
+        private Instant lastModifyTime;
 
         private Integer observedVersion;
     }

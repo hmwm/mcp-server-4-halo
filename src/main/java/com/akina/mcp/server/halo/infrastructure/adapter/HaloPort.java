@@ -134,7 +134,7 @@ public class HaloPort implements IHaloPort {
         PublishPostResponse.PublishPostData data = PublishPostResponse.PublishPostData.builder()
                 .postId(dto.getMetadata().getName())
                 .permalink(dto.getStatus().getPermalink())
-                .publishTime(dto.getSpec().getPublishTime().toInstant())
+                .publishTime(dto.getSpec().getPublishTime())
                 .success(published)
                 .build();
 
