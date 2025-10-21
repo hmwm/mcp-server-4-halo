@@ -1,6 +1,5 @@
 package com.akina.mcp.server.halo;
 
-import com.akina.mcp.server.halo.domain.service.IHaloBlogService;
 import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +35,7 @@ public class HaloBlogServiceTest {
         CreatePostRequest.Content content = new CreatePostRequest.Content();
         
         metadata.setName("test-post-123");
-        spec.setTitle("测试文章标题");
+        spec.setTitle("测试文章标题00000");
         spec.setSlug("test-slug");
         spec.setOwner("admin");
         spec.setTags(new String[]{"test"});
@@ -52,5 +51,8 @@ public class HaloBlogServiceTest {
         assertNotNull(request, "CreatePostRequest should be created");
         assertNotNull(request.getPost(), "Post should be set");
         assertNotNull(request.getContent(), "Content should be set");
+
+        haloBlogService.createPost(request);
+        haloBlogService.publishPost("haloApi测试文章");
     }
 }

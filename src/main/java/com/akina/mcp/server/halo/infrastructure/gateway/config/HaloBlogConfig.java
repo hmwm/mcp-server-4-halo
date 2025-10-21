@@ -1,5 +1,6 @@
-package com.akina.mcp.server.halo.infrastructure.gateway;
+package com.akina.mcp.server.halo.infrastructure.gateway.config;
 
+import com.akina.mcp.server.halo.infrastructure.gateway.HaloBlogApi;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import okhttp3.Interceptor;

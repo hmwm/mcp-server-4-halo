@@ -1,8 +1,8 @@
 package com.akina.mcp.server.halo.infrastructure.gateway;
 
-import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostRequest;
-import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostResponse;
-import com.akina.mcp.server.halo.infrastructure.gateway.dto.PublishPostResponse;
+import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostRequestDTO;
+import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostResponseDTO;
+import com.akina.mcp.server.halo.infrastructure.gateway.dto.PublishPostResponseDTO;
 import retrofit2.Call;
 import retrofit2.http.*;
 
@@ -19,16 +19,16 @@ public interface HaloBlogApi {
      */
     @POST("apis/api.console.halo.run/v1alpha1/posts")
     @Headers("Content-Type: application/json")
-    Call<CreatePostResponse> createPost(@Body CreatePostRequest request);
+    Call<CreatePostResponseDTO> createPost(@Body CreatePostRequestDTO request);
     
     /**
      * 发布文章
-     * @param postName 文章名称
+     * @param postName 文章名称 // MetaName 也就是业务层的postId
      * @param async 是否异步发布
      * @return 发布文章响应
      */
     @PUT("apis/api.console.halo.run/v1alpha1/posts/{postName}/publish")
-    Call<PublishPostResponse> publishPost(
+    Call<PublishPostResponseDTO> publishPost(
             @Path("postName") String postName,
             @Query("async") boolean async
     );

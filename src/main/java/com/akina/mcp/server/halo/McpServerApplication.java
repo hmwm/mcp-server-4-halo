@@ -1,7 +1,5 @@
 package com.akina.mcp.server.halo;
 
-import com.akina.mcp.server.halo.domain.service.IHaloBlogService;
-import com.akina.mcp.server.halo.infrastructure.gateway.HaloBlogServiceImpl;
 import com.akina.mcp.server.halo.infrastructure.gateway.HaloBlogApi;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;

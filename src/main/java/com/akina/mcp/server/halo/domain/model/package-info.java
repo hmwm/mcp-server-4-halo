@@ -1,1 +1,0 @@
-package com.akina.mcp.server.halo.domain.model;
