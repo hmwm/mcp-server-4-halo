@@ -18,7 +18,7 @@ public interface HaloBlogApi {
      * @return 创建文章响应
      */
     @POST("apis/api.console.halo.run/v1alpha1/posts")
-    @Headers("Content-Type: application/json")
+    @Headers("Content-Type: application/json; charset=UTF-8")
     Call<CreatePostResponseDTO> createPost(@Body CreatePostRequestDTO request);
     
     /**

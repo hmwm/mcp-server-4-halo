@@ -23,8 +23,8 @@ public class CreatePostResponse {
     @JsonPropertyDescription("message")
     private String message;
 
-    @JsonProperty(required = true, value = "articleData")
-    @JsonPropertyDescription("articleData")
+    @JsonProperty(required = true, value = "data")
+    @JsonPropertyDescription("data")
     private ArticleData articleData;
 
     @Data

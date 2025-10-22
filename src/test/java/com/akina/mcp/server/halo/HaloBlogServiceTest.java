@@ -1,24 +1,33 @@
 package com.akina.mcp.server.halo;
 
 
+import com.akina.mcp.server.halo.domain.model.CreateAndPublishResponse;
 import com.akina.mcp.server.halo.domain.model.CreatePostRequest;
 import com.akina.mcp.server.halo.domain.service.HaloArticleService;
 import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostRequestDTO;
+import com.akina.mcp.server.halo.infrastructure.gateway.dto.CreatePostResponseDTO;
+import com.akina.mcp.server.halo.type.utils.CharsetFixer;
+import com.alibaba.fastjson2.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Halo Blog Service 测试类
  */
+@Slf4j
 @SpringBootTest
 @TestPropertySource(properties = {
     "halo.blog.base-url=https://yaemiko.live",
@@ -33,20 +42,40 @@ public class HaloBlogServiceTest {
     public void testHaloBlogServiceBean() {
         assertNotNull(haloArticleService, "IHaloBlogService bean should be created");
     }
-    
+
     @Test
     public void testCreatePostRequest() throws IOException {
 
         CreatePostRequest createPostRequest = new CreatePostRequest();
-        createPostRequest.setTitle("Title");
-        createPostRequest.setSlug("Slug");
-        createPostRequest.setMarkdown("# 测试文章内容\n这是一篇测试文章");
-        createPostRequest.setCategories(Arrays.asList("Spring", "live"));
-        createPostRequest.setTags(Arrays.asList("Spring", "学习"));
+        createPostRequest.setTitle("## 我的博客文章");
+        createPostRequest.setSlug("## random-image-123");
+        createPostRequest.setMarkdown("""
+                ### 完成\\n\\n了基于 Retrofit2 的 Halo Blog Service 接口封装
+                
+                ## 创建了 IHaloBlogService 接口 - 定义了创建和发布文章的服务接口
+                2. 创建了完整的 DTO 对象 - 包括：
+                • CreatePostRequest - 创建文章请求对象
+                • CreatePostResponse - 创建文章响应对象
+                • PublishPostResponse - 发布文章响应对象
+                3. 实现了 Retrofit2 配置 - 包括：
+                • HaloBlogApi - Retrofit2 API 接口定义
+                • HaloBlogConfig - Retrofit2 和 OkHttp 配置
+                • HaloBlogServiceImpl - 服务实现类
+                4. 在 McpServerApplication 中配置了 Bean - 提供了 IHaloBlogService 的 Bean 实例
+                5. 创建了测试类和使用示例 - 验证配置正确性并提供使用参考
+                """);
+        createPostRequest.setCategories(Arrays.asList("# 技术", "live"));
+        createPostRequest.setTags(Arrays.asList("# Spring", "学习"));
         createPostRequest.setPublishNow(true);
 
 
 
-        haloArticleService.createAndPublish(createPostRequest);
+        CreateAndPublishResponse response = haloArticleService.createAndPublish(createPostRequest);
+        log.info("创建并发布完成，响应{}：", JSON.toJSONString(response));
+        log.info("创建文章完成，响应{}：",JSON.toJSONString(response.getCreatePostResponse()));
+        log.info("发布文章完成，响应{}：",JSON.toJSONString(response.getPublishPostResponse()));
+
     }
+
+
 }

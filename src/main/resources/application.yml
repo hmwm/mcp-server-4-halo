@@ -2,12 +2,37 @@
 halo:
   blog:
     base-url: https://yaemiko.live
-    pat: ${HALO_PAT:pat_eyJraWQiOiJ1eFZJZ1NtT2FWSmtIQkpmTUJXSmJ2U09FYzExSlQ3LTZnam1NWktGcXk4IiwiYWxnIjoiUlMyNTYifQ.eyJpc3MiOiJodHRwOi8vMTE3LjcyLjU0LjEwNDo4MDkwLyIsInN1YiI6InlhZW1pa28iLCJpYXQiOjE3NjEwMjg3MjQsImp0aSI6ImQ1M2ZkNDZhLWI0ZDQtODE5ZC0wYzNjLWM3OWExMzQzODc1NCIsInBhdF9uYW1lIjoicGF0LXJ2dm82ZnJ6In0.U1nBg9yI-jKnY3Y5mS7atCqVkIhi_sLrT5JhMWqPg0xr2-7N37FYtTFLSYfg-xXg97xcDZ5eFyzrgAO0tLBGeVQkPrNHQ-LR93iE-wi-xn_1W-aZbXD2FIxSAY6NmiLxkXZPDoRHQ3hl6KY_SMG7GaCm0Du_Lyd8u3E0Wg5Zxdw2mnZSWkW02NY-A-uChvrzyuWj104eqen_d3O-ByEuIRTLN4fjilhQD3nePsvhd25nHsBbijEo8kjtCsDtltrJdP-yL1nlxxil2DMrNq3ZHQaRjHl_TYo-CtpIRwL_uQD37KPaWnHeaFmtcpMO8_BK-x8w9ijdaJZ2iDkTG5zMQK2iQ2cXii6C-7tazmRo0pMXVkELCXiL2qWH1haJGgKyGwRMk7FtAMggOhIBXsyQPOnDZLFWUmLw0Z1Ae_rPGiVAJhFJDJkDN8a6q2glGxbInifnKS4gqtBuh1zhhqRCPcqnu66omfAPctWrqRd-oxeTH6DC6cIwDMpfoNmv12A5GXoF2iObrmOEu7uCHCh0MhswFWK2jJpKrAc92M5qQiXyGx_XfepolWPaVYCrfe7U-KN04YvK0XtP9ydMeD9h4oqqqm8DIdyT805ZN4KRH5ztnsCMCBoWY6sqayKyK2PrLOZDrm58NZMXNED8FoyNgy81TUaOEiHeYie6_lEIhoI}
-#    pat: ${HALO_PAT:your-pat-token-here}
+    pat: ${HALO_PAT:your-pat-token-here}
     default-owner: admin
+
+spring:
+  application:
+    name: mcp-server-halo
+
+  ai:
+    mcp:
+      server:
+        name: ${spring.application.name}
+        version: 1.0.0
+
+  main:
+    banner-mode: off
+#     stdio 模式打开，sse 模式，注释掉。
+    web-application-type: none
 
 # 日志配置
 logging:
-  level:
-    com.akina.mcp.server.halo: DEBUG
-    retrofit2: DEBUG
+  # stdio 模式打开，sse 模式，注释掉。
+  pattern:
+    console: ""
+  file:
+    name: data/log/${spring.application.name}.log
+
+
+server:
+  port: 8101
+  servlet:
+    encoding:
+      charset: UTF-8
+      force: true
+      enabled: true
